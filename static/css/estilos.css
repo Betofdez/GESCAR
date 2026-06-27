@@ -1,0 +1,53 @@
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f5f5f5;
+}
+
+header{
+    background:#003366;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+main{
+    padding:40px;
+}
+
+.tarjeta{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+.menu-principal{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 400px;
+    margin: 40px auto;
+}
+
+.opcion-menu{
+    display: block;
+    background: white;
+    padding: 22px;
+    text-align: center;
+    text-decoration: none;
+    color: #003366;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,.15);
+}
+
+.opcion-menu:hover{
+    background: #003366;
+    color: white;
+}
+
+.salir{
+    color: #990000;
+}

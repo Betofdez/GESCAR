@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>GESCAR - Menú</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/estilos.css') }}">
+</head>
+
+<body>
+
+<header>
+    <h1>Gestión de Carteras</h1>
+    <p>Usuario: User1</p>
+</header>
+
+<main class="menu-principal">
+
+    <a class="opcion-menu" href="/cartera">💼 MI CARTERA</a>
+    <a class="opcion-menu" href="/historico">📘 HISTÓRICO</a>
+    <a class="opcion-menu" href="/indices">📈 ÍNDICES</a>
+    <a class="opcion-menu" href="/alarmas">🔔 ALARMAS</a>
+    <a class="opcion-menu" href="/altas">📝 ALTAS</a>
+    <a class="opcion-menu salir" href="#">SALIR</a>
+
+</main>
+
+</body>
+</html>
