@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}GESCAR - Venta{% endblock %}
+{% block page_title %}Venta{% endblock %}
+
+{% block content %}
+
+<div class="tarjeta">
+
+    <h4 class="mb-3">Venta de {{ valor.ticker }} - {{ valor.nombre }}</h4>
+
+    <form method="POST" action="/venta/{{ valor.ticker }}">
+
+        <div class="row g-3">
+
+            <div class="col-md-3">
+                <label class="form-label">Nº acciones</label>
+                <input type="number" step="0.0001" name="numero_acciones" class="form-control" required>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Precio venta</label>
+                <input type="number" step="0.0001" name="precio" class="form-control" value="{{ valor.cotizacion_actual }}" required>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Gastos</label>
+                <input type="number" step="0.01" name="gastos" class="form-control" value="0">
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Fecha venta</label>
+                <input type="date" name="fecha" class="form-control" required>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Comentarios</label>
+                <textarea name="comentarios" class="form-control" rows="3"></textarea>
+            </div>
+
+        </div>
+
+        <div class="mt-4">
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-cash-coin"></i> Guardar venta
+            </button>
+
+            <a href="/cartera" class="btn btn-secondary">
+                Cancelar
+            </a>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -6,6 +6,7 @@ from routes.historico_routes import historico_bp
 from routes.indices_routes import indices_bp
 from routes.alarmas_routes import alarmas_bp
 from routes.altas_routes import altas_bp
+from routes.venta_routes import venta_bp
 
 from filters.formatos import formato_es
 from filters.formatos import fecha_es
@@ -18,6 +19,7 @@ app.register_blueprint(historico_bp)
 app.register_blueprint(indices_bp)
 app.register_blueprint(alarmas_bp)
 app.register_blueprint(altas_bp)
+app.register_blueprint(venta_bp)
 
 
 # Formatos numéricos en español

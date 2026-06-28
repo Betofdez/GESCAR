@@ -36,3 +36,30 @@ def obtener_valores():
 
     finally:
         conexion.close()
+
+def obtener_valor_por_ticker(ticker):
+    conexion = obtener_conexion()
+
+    try:
+        with conexion.cursor() as cursor:
+            sql = """
+                SELECT id, ticker, nombre, cotizacion_actual
+                FROM valores
+                WHERE ticker = %s
+            """
+
+            cursor.execute(sql, (ticker,))
+            fila = cursor.fetchone()
+
+            if fila is None:
+                return None
+
+            return Valor(
+                id=fila["id"],
+                ticker=fila["ticker"],
+                nombre=fila["nombre"],
+                cotizacion_actual=fila["cotizacion_actual"]
+            )
+
+    finally:
+        conexion.close()
