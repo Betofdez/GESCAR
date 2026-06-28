@@ -1,12 +1,68 @@
 {% extends "base.html" %}
 
-{% block title %}GESCAR - Mi Cartera{% endblock %}
+{% block title %}GESCAR - Nueva operación{% endblock %}
+{% block page_title %}Nueva operación{% endblock %}
 
 {% block content %}
-    <div class="tarjeta">
-        <h2>Altas</h2>
-        <p>Aquí mostraremos las acciones actualmente en altas.</p>
 
-        <a href="/">Volver al menú</a>
-    </div>
+<div class="tarjeta">
+
+    <h4 class="mb-3">Registrar compra</h4>
+
+    <form method="POST" action="/altas">
+
+        <div class="row g-3">
+
+            <div class="col-md-4">
+                <label class="form-label">Valor</label>
+                <select name="valor_id" class="form-select" required>
+                    {% for valor in valores %}
+                        <option value="{{ valor.id }}">
+                            {{ valor.ticker }} - {{ valor.nombre }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label">Nº acciones</label>
+                <input type="number" name="numero_acciones" class="form-control" required>
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label">Precio</label>
+                <input type="number" step="0.01" name="precio" class="form-control" required>
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label">Gastos</label>
+                <input type="number" step="0.01" name="gastos" class="form-control" value="0">
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label">Fecha</label>
+                <input type="date" name="fecha" class="form-control" required>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Comentarios</label>
+                <textarea name="comentarios" class="form-control" rows="3"></textarea>
+            </div>
+
+        </div>
+
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-save"></i> Guardar compra
+            </button>
+
+            <a href="/cartera" class="btn btn-secondary">
+                Cancelar
+            </a>
+        </div>
+
+    </form>
+
+</div>
+
 {% endblock %}

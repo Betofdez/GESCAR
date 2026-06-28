@@ -1,12 +1,165 @@
 {% extends "base.html" %}
 
 {% block title %}GESCAR - Mi Cartera{% endblock %}
+{% block page_title %}Mi Cartera{% endblock %}
 
 {% block content %}
-    <div class="tarjeta">
-        <h2>Mi Cartera</h2>
-        <p>Aquí mostraremos las acciones actualmente en cartera.</p>
 
-        <a href="/">Volver al menú</a>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3 class="mb-0">Mi Cartera</h3>
+        <small class="text-muted">Resumen actual de tus inversiones</small>
     </div>
+
+    <div class="d-flex gap-2">
+        <button class="btn btn-outline-primary btn-sm">
+            <i class="bi bi-arrow-repeat"></i> Actualizar
+        </button>
+
+        <button class="btn btn-outline-success btn-sm">
+            <i class="bi bi-file-earmark-excel"></i> Excel
+        </button>
+
+        <button class="btn btn-outline-danger btn-sm">
+            <i class="bi bi-file-earmark-pdf"></i> PDF
+        </button>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+
+    <div class="col-lg-3 col-md-6">
+        <div class="dashboard-card">
+            <div class="dashboard-card-title">
+                <i class="bi bi-cash-stack"></i>
+                <span>Valor cartera</span>
+            </div>
+            <div class="dashboard-card-value">
+                {{ resumen.valor_total | formato_es }} €
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="dashboard-card">
+            <div class="dashboard-card-title">
+                <i class="bi bi-graph-up-arrow"></i>
+                <span>Rentabilidad</span>
+            </div>
+
+            {% if resumen.rentabilidad_total >= 0 %}
+                <div class="dashboard-card-value text-success">
+                    +{{ resumen.rentabilidad_total | formato_es }} €
+                </div>
+                <div class="dashboard-card-subtitle text-success">
+                    +{{ resumen.rentabilidad_porcentaje_total | formato_es }} %
+                </div>
+            {% else %}
+                <div class="dashboard-card-value text-danger">
+                    {{ resumen.rentabilidad_total | formato_es }} €
+                </div>
+                <div class="dashboard-card-subtitle text-danger">
+                    {{ resumen.rentabilidad_porcentaje_total | formato_es }} %
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="dashboard-card">
+            <div class="dashboard-card-title">
+                <i class="bi bi-wallet2"></i>
+                <span>Inversión</span>
+            </div>
+            <div class="dashboard-card-value">
+                {{ resumen.inversion_total | formato_es }} €
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="dashboard-card">
+            <div class="dashboard-card-title">
+                <i class="bi bi-pie-chart"></i>
+                <span>Valores</span>
+            </div>
+            <div class="dashboard-card-value">
+                {{ resumen.numero_valores }}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="tarjeta">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="mb-0">Valores en cartera</h5>
+
+        <input type="text"
+               class="form-control form-control-sm buscador-cartera"
+               placeholder="Buscar valor...">
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>BME</th>
+                    <th>Nombre</th>
+                    <th>Núm</th>
+                    <th>Compra</th>
+                    <th>Cargo</th>
+                    <th>Actual</th>
+                    <th>Valor actual</th>
+                    <th>Rentabilidad</th>
+                    <th>%</th>
+                    <th>F. compra</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for accion in cartera %}
+                <tr>
+                    <td><strong>{{ accion.ticker }}</strong></td>
+                    <td>{{ accion.nombre }}</td>
+                    <td>{{ accion.numero_acciones }}</td>
+                    <td>{{ accion.precio | formato_es }} €</td>
+                    <td>{{ accion.cargo | formato_es }} €</td>
+                    <td>{{ accion.cotizacion_actual | formato_es }} €</td>
+                    <td>{{ accion.valor_actual | formato_es }} €</td>
+
+                    <td>
+                        {% if accion.rentabilidad >= 0 %}
+                            <span class="text-success fw-bold">
+                                +{{ accion.rentabilidad | formato_es }} €
+                            </span>
+                        {% else %}
+                            <span class="text-danger fw-bold">
+                                {{ accion.rentabilidad | formato_es }} €
+                            </span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if accion.rentabilidad_porcentaje >= 0 %}
+                            <span class="badge bg-success">
+                                +{{ accion.rentabilidad_porcentaje | formato_es }} %
+                            </span>
+                        {% else %}
+                            <span class="badge bg-danger">
+                                {{ accion.rentabilidad_porcentaje | formato_es }} %
+                            </span>
+                        {% endif %}
+                    </td>
+
+                    <td>{{ accion.fecha }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
 {% endblock %}
