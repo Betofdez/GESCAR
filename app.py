@@ -7,11 +7,13 @@ from routes.indices_routes import indices_bp
 from routes.alarmas_routes import alarmas_bp
 from routes.altas_routes import altas_bp
 from routes.venta_routes import venta_bp
+from routes.cotizacion_routes import cotizacion_bp
 
 from filters.formatos import formato_es
 from filters.formatos import fecha_es
 
 app = Flask(__name__)
+app.secret_key = "gescar_clave_desarrollo"
 
 app.register_blueprint(inicio_bp)
 app.register_blueprint(cartera_bp)
@@ -20,6 +22,7 @@ app.register_blueprint(indices_bp)
 app.register_blueprint(alarmas_bp)
 app.register_blueprint(altas_bp)
 app.register_blueprint(venta_bp)
+app.register_blueprint(cotizacion_bp)
 
 
 # Formatos numéricos en español

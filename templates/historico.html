@@ -1,12 +1,46 @@
 {% extends "base.html" %}
 
-{% block title %}GESCAR - Mi Cartera{% endblock %}
+{% block title %}GESCAR - Histórico{% endblock %}
+{% block page_title %}Histórico{% endblock %}
 
 {% block content %}
-    <div class="tarjeta">
-        <h2>Mi Histórico</h2>
-        <p>Aquí mostraremos las acciones actualmente en historico.</p>
 
-        <a href="/">Volver al menú</a>
+<div class="tarjeta">
+
+    <h4 class="mb-3">Histórico de ventas</h4>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>BME</th>
+                    <th>Nombre</th>
+                    <th>Nº acciones</th>
+                    <th>Precio venta</th>
+                    <th>Gastos</th>
+                    <th>Total venta</th>
+                    <th>Fecha</th>
+                    <th>Comentarios</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for venta in ventas %}
+                <tr>
+                    <td><strong>{{ venta.ticker }}</strong></td>
+                    <td>{{ venta.nombre }}</td>
+                    <td>{{ venta.numero_acciones | formato_es }}</td>
+                    <td>{{ venta.precio | formato_es }} €</td>
+                    <td>{{ venta.gastos | formato_es }} €</td>
+                    <td>{{ ((venta.numero_acciones * venta.precio) - venta.gastos) | formato_es }} €</td>
+                    <td>{{ venta.fecha }}</td>
+                    <td>{{ venta.comentarios }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
+
+</div>
+
 {% endblock %}
