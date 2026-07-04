@@ -44,3 +44,10 @@ class Cartera:
 
     def numero_valores(self):
         return len(self.posiciones)
+    
+    def obtener_posicion_por_ticker(self, ticker):
+        for posicion in self.posiciones:
+            if posicion.valor.ticker == ticker:
+                return posicion
+
+        return None

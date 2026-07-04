@@ -39,3 +39,9 @@ def obtener_resumen_cartera():
         "numero_valores": cartera.numero_valores(),
         "dividendos": 0
     }
+
+def obtener_posicion(ticker):
+    operaciones = obtener_operaciones()
+    cartera = Cartera(operaciones)
+
+    return cartera.obtener_posicion_por_ticker(ticker)

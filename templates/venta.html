@@ -9,6 +9,23 @@
 
     <h4 class="mb-3">Venta de {{ valor.ticker }} - {{ valor.nombre }}</h4>
 
+    {% if error %}
+        <div class="alert alert-danger">
+            <i class="bi bi-exclamation-triangle"></i>
+            {{ error }}
+        </div>
+    {% endif %}
+
+    {% if posicion %}
+    <div class="alert alert-info">
+        <strong>Acciones disponibles:</strong>
+        {{ posicion.numero_acciones | formato_es }}
+        |
+        <strong>Precio medio:</strong>
+        {{ posicion.precio_medio() | formato_es }} €
+    </div>
+    {% endif %}
+
     <form method="POST" action="/venta/{{ valor.ticker }}">
 
         <div class="row g-3">
