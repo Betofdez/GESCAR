@@ -149,3 +149,7 @@ tr:hover{
 .buscador-cartera{
     max-width: 260px;
 }
+/***************** LOGIN **************************/
+.login-body{
+    background: linear-gradient(135deg, #003366, #0d6efd);
+}

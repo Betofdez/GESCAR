@@ -2,10 +2,12 @@ from flask import Blueprint, render_template, request, redirect
 from models.valor_model import obtener_valor_por_ticker
 from models.operacion_model import insertar_venta
 from services.cartera_service import obtener_posicion
+from utils.auth import login_required
 
 venta_bp = Blueprint("venta", __name__)
 
 @venta_bp.route("/venta/<ticker>", methods=["GET", "POST"])
+@login_required
 def venta(ticker):
     valor = obtener_valor_por_ticker(ticker)
 

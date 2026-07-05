@@ -1,30 +1,72 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>GESCAR - Menú</title>
+{% extends "base.html" %}
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/estilos.css') }}">
-</head>
+{% block title %}GESCAR - Inicio{% endblock %}
+{% block page_title %}Menú principal{% endblock %}
 
-<body>
+{% block content %}
 
-<header>
-    <h1>Gestión de Carteras</h1>
-    <p>Usuario: User1</p>
-</header>
+<div class="row g-4">
 
-<main class="menu-principal">
+    <div class="col-md-4">
+        <a href="/cartera" class="text-decoration-none">
+            <div class="dashboard-card">
+                <div class="dashboard-card-title">
+                    <i class="bi bi-briefcase"></i>
+                    <span>Mi cartera</span>
+                </div>
+                <p class="text-muted mb-0">Consulta tus posiciones y rentabilidad.</p>
+            </div>
+        </a>
+    </div>
 
-    <a class="opcion-menu" href="/cartera">💼 MI CARTERA</a>
-    <a class="opcion-menu" href="/historico">📘 HISTÓRICO</a>
-    <a class="opcion-menu" href="/indices">📈 ÍNDICES</a>
-    <a class="opcion-menu" href="/alarmas">🔔 ALARMAS</a>
-    <a class="opcion-menu" href="/altas">📝 ALTAS</a>
-    <a class="opcion-menu salir" href="#">SALIR</a>
+    <div class="col-md-4">
+        <a href="/altas" class="text-decoration-none">
+            <div class="dashboard-card">
+                <div class="dashboard-card-title">
+                    <i class="bi bi-plus-square"></i>
+                    <span>Operaciones</span>
+                </div>
+                <p class="text-muted mb-0">Registra compras.</p>
+            </div>
+        </a>
+    </div>
 
-</main>
+    <div class="col-md-4">
+        <a href="/historico" class="text-decoration-none">
+            <div class="dashboard-card">
+                <div class="dashboard-card-title">
+                    <i class="bi bi-clock-history"></i>
+                    <span>Histórico</span>
+                </div>
+                <p class="text-muted mb-0">Consulta operaciones de compra y/o venta.</p>
+            </div>
+        </a>
+    </div>
 
-</body>
-</html>
+    <div class="col-md-4">
+        <a href="/indices" class="text-decoration-none">
+            <div class="dashboard-card">
+                <div class="dashboard-card-title">
+                    <i class="bi bi-graph-up-arrow"></i>
+                    <span>Índices</span>
+                </div>
+                <p class="text-muted mb-0">Consulta información de mercado.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="/alarmas" class="text-decoration-none">
+            <div class="dashboard-card">
+                <div class="dashboard-card-title">
+                    <i class="bi bi-bell"></i>
+                    <span>Alarmas</span>
+                </div>
+                <p class="text-muted mb-0">Gestiona avisos sobre cotizaciones.</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

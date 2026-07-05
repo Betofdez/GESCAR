@@ -1,7 +1,7 @@
 from database.conexion import obtener_conexion
 
 
-def obtener_ventas():
+def obtener_historico_operaciones():
     conexion = obtener_conexion()
 
     try:
@@ -9,6 +9,7 @@ def obtener_ventas():
             sql = """
                 SELECT
                     o.id,
+                    o.tipo,
                     v.ticker,
                     v.nombre,
                     o.numero_acciones,
@@ -19,8 +20,7 @@ def obtener_ventas():
                 FROM operaciones o
                 INNER JOIN valores v
                     ON o.valor_id = v.id
-                WHERE o.tipo = 'VENTA'
-                ORDER BY o.fecha DESC
+                ORDER BY o.fecha DESC, o.id DESC
             """
 
             cursor.execute(sql)

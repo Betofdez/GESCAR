@@ -28,3 +28,29 @@ def obtener_alarmas():
 
     finally:
         conexion.close()
+
+def insertar_alarma(usuario_id, valor_id, tipo, precio_objetivo, notificar_email, notificar_sms):
+    conexion = obtener_conexion()
+
+    try:
+        with conexion.cursor() as cursor:
+            sql = """
+                INSERT INTO alarmas
+                    (usuario_id, valor_id, tipo, precio_objetivo, activa, notificar_email, notificar_sms)
+                VALUES
+                    (%s, %s, %s, %s, TRUE, %s, %s)
+            """
+
+            cursor.execute(sql, (
+                usuario_id,
+                valor_id,
+                tipo,
+                precio_objetivo,
+                notificar_email,
+                notificar_sms
+            ))
+
+            conexion.commit()
+
+    finally:
+        conexion.close()

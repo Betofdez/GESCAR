@@ -1,10 +1,12 @@
 from flask import Blueprint, render_template, request, redirect
 from models.valor_model import obtener_valores
 from models.operacion_model import insertar_compra
+from utils.auth import login_required
 
 altas_bp = Blueprint("altas", __name__)
 
 @altas_bp.route("/altas", methods=["GET", "POST"])
+@login_required
 def altas():
 
     if request.method == "POST":
