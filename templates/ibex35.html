@@ -1,28 +1,28 @@
 {% extends "base.html" %}
 
-{% block title %}GESCAR - Índices{% endblock %}
-{% block page_title %}Índices{% endblock %}
+{% block title %}GESCAR - IBEX 35{% endblock %}
+{% block page_title %}IBEX 35{% endblock %}
 
 {% block content %}
 
 <div class="tarjeta">
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 class="mb-0">Información de índices</h4>
+        <h4 class="mb-0">Cotización acciones IBEX 35</h4>
 
         <div class="d-flex gap-2">
 
-            <a href="/indices/actualizar"
+            <a href="/ibex35/actualizar"
             class="btn btn-outline-primary btn-sm">
-                <i class="bi bi-arrow-repeat"></i> Actualizar índices
+                <i class="bi bi-arrow-repeat"></i> Actualizar cotizaciones
             </a>
 
-            <a href="/exportar/indices/excel"
+            <a href="/exportar/ibex35/excel"
             class="btn btn-outline-success btn-sm">
                 <i class="bi bi-file-earmark-excel"></i> Excel
             </a>
 
-            <a href="/exportar/indices/pdf"
+            <a href="/exportar/ibex35/pdf"
             class="btn btn-outline-danger btn-sm">
                 <i class="bi bi-file-earmark-pdf"></i> PDF
             </a>
@@ -34,41 +34,43 @@
         <table class="table table-striped table-hover align-middle tabla-datatable">
             <thead class="table-dark">
                 <tr>
-                    <th>Índice</th>
+                    <th>Ticker</th>
+                    <th>Nombre</th>
                     <th>Ticker Yahoo</th>
-                    <th>Actual</th>
+                    <th>Cotización</th>
                     <th>Variación</th>
                     <th>%</th>
                 </tr>
             </thead>
 
             <tbody>
-                {% for indice in indices %}
+                {% for accion in acciones %}
                 <tr>
-                    <td><strong>{{ indice.nombre }}</strong></td>
-                    <td>{{ indice.ticker_yahoo }}</td>
-                    <td>{{ indice.cotizacion_actual | formato_es }} €</td>
+                    <td><strong>{{ accion.ticker }}</strong></td>
+                    <td>{{ accion.nombre }}</td>
+                    <td>{{ accion.ticker_yahoo }}</td>
+                    <td>{{ accion.cotizacion_actual | formato_es }} €</td>
 
                     <td>
-                        {% if indice.variacion >= 0 %}
+                        {% if accion.variacion >= 0 %}
                             <span class="text-success fw-bold">
-                                +{{ indice.variacion | formato_es }}
+                                +{{ accion.variacion | formato_es }}
                             </span>
                         {% else %}
                             <span class="text-danger fw-bold">
-                                {{ indice.variacion | formato_es }}
+                                {{ accion.variacion | formato_es }}
                             </span>
                         {% endif %}
                     </td>
 
                     <td>
-                        {% if indice.variacion_porcentaje >= 0 %}
+                        {% if accion.variacion_porcentaje >= 0 %}
                             <span class="badge bg-success">
-                                +{{ indice.variacion_porcentaje | formato_es }} %
+                                +{{ accion.variacion_porcentaje | formato_es }} %
                             </span>
                         {% else %}
                             <span class="badge bg-danger">
-                                {{ indice.variacion_porcentaje | formato_es }} %
+                                {{ accion.variacion_porcentaje | formato_es }} %
                             </span>
                         {% endif %}
                     </td>

@@ -9,6 +9,8 @@ from routes.altas_routes import altas_bp
 from routes.venta_routes import venta_bp
 from routes.cotizacion_routes import cotizacion_bp
 from routes.login_routes import login_bp
+from routes.ibex_routes import ibex_bp
+from routes.exportacion_routes import exportacion_bp
 
 from filters.formatos import formato_es
 from filters.formatos import fecha_es
@@ -25,6 +27,8 @@ app.register_blueprint(altas_bp)
 app.register_blueprint(venta_bp)
 app.register_blueprint(cotizacion_bp)
 app.register_blueprint(login_bp)
+app.register_blueprint(ibex_bp)
+app.register_blueprint(exportacion_bp)
 
 
 # Formatos numéricos en español
