@@ -3,7 +3,6 @@ from flask import Blueprint, send_file
 from services.exportacion_service import crear_excel, crear_pdf
 from services.cartera_service import obtener_cartera
 from models.historico_model import obtener_historico_operaciones
-from models.alarma_model import obtener_alarmas
 from models.indice_model import obtener_indices
 from models.ibex_model import obtener_acciones_ibex
 from utils.auth import login_required
@@ -164,66 +163,6 @@ def exportar_historico_pdf():
         archivo,
         "historico_operaciones.pdf"
     )
-
-
-# --------------------------------------------------
-# ALARMAS
-# --------------------------------------------------
-
-def preparar_alarmas():
-    alarmas = obtener_alarmas()
-
-    columnas = [
-        "Ticker",
-        "Nombre",
-        "Cotización actual",
-        "Tipo",
-        "Precio objetivo",
-        "Email",
-        "SMS",
-        "Estado"
-    ]
-
-    filas = []
-
-    for alarma in alarmas:
-        filas.append([
-            alarma["ticker"],
-            alarma["nombre"],
-            alarma["cotizacion_actual"],
-            alarma["tipo"],
-            alarma["precio_objetivo"],
-            "Sí" if alarma["notificar_email"] else "No",
-            "Sí" if alarma["notificar_sms"] else "No",
-            "Activa" if alarma["activa"] else "Inactiva"
-        ])
-
-    return columnas, filas
-
-
-@exportacion_bp.route("/exportar/alarmas/excel")
-@login_required
-def exportar_alarmas_excel():
-    columnas, filas = preparar_alarmas()
-    archivo = crear_excel("Alarmas", columnas, filas)
-
-    return enviar_excel(
-        archivo,
-        "alarmas.xlsx"
-    )
-
-
-@exportacion_bp.route("/exportar/alarmas/pdf")
-@login_required
-def exportar_alarmas_pdf():
-    columnas, filas = preparar_alarmas()
-    archivo = crear_pdf("Alarmas", columnas, filas)
-
-    return enviar_pdf(
-        archivo,
-        "alarmas.pdf"
-    )
-
 
 # --------------------------------------------------
 # ÍNDICES

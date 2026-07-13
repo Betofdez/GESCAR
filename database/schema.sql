@@ -1,4 +1,3 @@
-DROP TABLE IF EXISTS alarmas;
 DROP TABLE IF EXISTS dividendos;
 DROP TABLE IF EXISTS operaciones;
 DROP TABLE IF EXISTS valores;
@@ -60,27 +59,9 @@ CREATE TABLE dividendos (
     FOREIGN KEY (valor_id) REFERENCES valores(id)
 );
 
-CREATE TABLE alarmas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_id INT NOT NULL,
-    valor_id INT NOT NULL,
-    tipo ENUM('SUPERIOR', 'INFERIOR') NOT NULL,
-    precio_objetivo DECIMAL(12,4) NOT NULL,
-    activa BOOLEAN DEFAULT TRUE,
-    notificar_email BOOLEAN DEFAULT FALSE,
-    notificar_sms BOOLEAN DEFAULT FALSE,
-    fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
-
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
-    FOREIGN KEY (valor_id) REFERENCES valores(id)
-);
-
 CREATE INDEX idx_operaciones_usuario ON operaciones(usuario_id);
 CREATE INDEX idx_operaciones_valor ON operaciones(valor_id);
 CREATE INDEX idx_operaciones_fecha ON operaciones(fecha);
 
 CREATE INDEX idx_dividendos_usuario ON dividendos(usuario_id);
 CREATE INDEX idx_dividendos_valor ON dividendos(valor_id);
-
-CREATE INDEX idx_alarmas_usuario ON alarmas(usuario_id);
-CREATE INDEX idx_alarmas_valor ON alarmas(valor_id);
