@@ -15,12 +15,25 @@
 
             <div class="col-md-4">
                 <label class="form-label">Valor</label>
-                <select name="valor_id" class="form-select" required>
-                    {% for valor in valores %}
-                        <option value="{{ valor.id }}">
-                            {{ valor.ticker }} - {{ valor.nombre }}
+                <select name="accion_ibex_id"
+                        id="accion_ibex_id"
+                        class="form-select"
+                        required>
+
+                    <option value="">
+                        Selecciona una acción...
+                    </option>
+
+                    {% for accion in acciones_ibex %}
+                        <option
+                            value="{{ accion.id }}"
+                            data-cotizacion="{{ accion.cotizacion_actual }}">
+
+                            {{ accion.ticker }} - {{ accion.nombre }}
+
                         </option>
                     {% endfor %}
+
                 </select>
             </div>
 
@@ -31,7 +44,7 @@
 
             <div class="col-md-2">
                 <label class="form-label">Precio</label>
-                <input type="number" step="0.01" name="precio" class="form-control" required>
+                <input type="number" id="precio" step="0.01" name="precio" class="form-control" required>
             </div>
 
             <div class="col-md-2">
@@ -64,5 +77,28 @@
     </form>
 
 </div>
+
+<!--El usuario podrá modificar el precio, porque el precio real de compra puede ser distinto de la última cotización-->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const selector = document.getElementById("accion_ibex_id");
+        const campoPrecio = document.getElementById("precio");
+
+        selector.addEventListener("change", function () {
+            const opcionSeleccionada =
+                selector.options[selector.selectedIndex];
+
+            const cotizacion =
+                opcionSeleccionada.dataset.cotizacion;
+
+            if (cotizacion) {
+                campoPrecio.value =
+                    parseFloat(cotizacion).toFixed(4);
+            } else {
+                campoPrecio.value = "";
+            }
+        });
+    });
+</script>
 
 {% endblock %}

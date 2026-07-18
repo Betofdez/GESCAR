@@ -30,3 +30,25 @@ def actualizar_accion_ibex(accion_id, cotizacion_actual, variacion, variacion_po
             conexion.commit()
     finally:
         conexion.close()
+
+def obtener_accion_ibex_por_id(accion_id):
+    conexion = obtener_conexion()
+
+    try:
+        with conexion.cursor() as cursor:
+            sql = """
+                SELECT
+                    id,
+                    ticker,
+                    nombre,
+                    ticker_yahoo,
+                    cotizacion_actual
+                FROM acciones_ibex
+                WHERE id = %s
+            """
+
+            cursor.execute(sql, (accion_id,))
+            return cursor.fetchone()
+
+    finally:
+        conexion.close()

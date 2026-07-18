@@ -153,3 +153,8 @@ tr:hover{
 .login-body{
     background: linear-gradient(135deg, #003366, #0d6efd);
 }
+
+/***************** ERROR **************************/
+.error-icon{
+    font-size: 70px;
+}

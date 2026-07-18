@@ -10,12 +10,16 @@ from routes.cotizacion_routes import cotizacion_bp
 from routes.login_routes import login_bp
 from routes.ibex_routes import ibex_bp
 from routes.exportacion_routes import exportacion_bp
+from routes.error_routes import registrar_manejadores_error
 
 from filters.formatos import formato_es
 from filters.formatos import fecha_es
 
+from config import Config
+
 app = Flask(__name__)
-app.secret_key = "gescar_clave_desarrollo"
+#app.secret_key = "gescar_clave_desarrollo"
+app.config.from_object(Config)
 
 app.register_blueprint(inicio_bp)
 app.register_blueprint(cartera_bp)
@@ -28,10 +32,12 @@ app.register_blueprint(login_bp)
 app.register_blueprint(ibex_bp)
 app.register_blueprint(exportacion_bp)
 
+registrar_manejadores_error(app)
+
 
 # Formatos numéricos en español
 app.jinja_env.filters["formato_es"] = formato_es
 app.jinja_env.filters["fecha_es"] = fecha_es
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=Config.DEBUG)
