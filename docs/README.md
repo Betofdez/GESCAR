@@ -63,40 +63,31 @@ La aplicación permite registrar operaciones de compra y venta de acciones, cons
 
 ---
 
-# Arquitectura
+# Diagramas de la aplicación
 
+## Arquitectura de la aplicación
 El proyecto sigue una arquitectura por capas.
+<p align="center">
+    <img src="diagramas/Diagrama de Arquitectura.png"
+         alt="Diagrama de arquitectura de GESCAR"
+         width="900">
+</p>
 
-```
-Cliente (Navegador)
-        │
-        ▼
-      Flask
-        │
- ┌───────────────┐
- │    Routes     │
- └───────────────┘
-        │
-        ▼
- ┌───────────────┐
- │   Services    │
- └───────────────┘
-        │
-        ▼
- ┌───────────────┐
- │    Models     │
- └───────────────┘
-        │
-        ▼
-      MySQL
+## Modelo entidad-relación
 
-        ▲
-        │
-  Clases de dominio
-      (Domain)
-```
+<p align="center">
+    <img src="diagramas/Diagrama Entidad Relación.png"
+         alt="Diagrama de arquitectura de GESCAR"
+         width="900">
+</p>
 
----
+## Casos de uso
+
+<p align="center">
+    <img src="diagramas/Diagrama de Casos de Uso (UML).png"
+         alt="Diagrama de arquitectura de GESCAR"
+         width="900">
+</p>
 
 # Estructura del proyecto
 
@@ -107,8 +98,13 @@ GESCAR/
 ├── config.py
 ├── requirements.txt
 ├── .env
+├── LICENSE
 │
 ├── database/
+│   └── schema.sql
+│
+├── filters/
+│   └── formatos.py
 │
 ├── domain/
 │   ├── cartera.py
@@ -117,19 +113,58 @@ GESCAR/
 │   └── valor.py
 │
 ├── models/
-│
+│   ├── cartera_model.py
+│   ├── operacion_model.py
+│   ├── ibex_model.py
+│   ├── indice_model.py
+│   ├── historico_model.py
+│   ├── usuario_model.py
+│   └── valor_model.py
 ├── routes/
-│
+│   ├── altas_routes.py
+│   ├── cartera_routes.py
+│   ├── cotizacion_routes.py
+│   ├── error_routes.py
+│   ├── exportacion_routes.py
+│   ├── historico_routes.py
+│   ├── indices_routes.py
+│   ├── inicio_routes.py
+│   ├── login_routes.py
+│   ├── venta_routes.py
+│   └── ibex_routes.py
 ├── services/
-│
+│   ├── cartera_service.py
+│   ├── cotizacion_service.py
+│   ├── exportacion_service.py
+│   ├── ibex_service.py
+│   └── indice_service.py
 ├── static/
-│   ├── css/
-│   ├── img/
-│   └── js/
+│   └── estilos.css
 │
 ├── templates/
+│   ├── altas.html
+│   ├── base.html
+│   ├── cartera.html
+│   ├── historico.html
+│   ├── ibex35.html
+│   ├── indices.html
+│   ├── inicio.html
+│   ├── login.html
+│   └── venta.html
 │
 └── utils/
+│   └── auth.py
+│
+├── docs/
+│   ├── MANUAL DE USUARIO.docx
+│   ├── README.md
+│   ├── altas.html
+│   └── Diagramas/
+│       ├── Diagrama de Arquitectura.png
+│       ├── Diagrama de Casos de Uso (UML).png
+│       └── Diagrama Entidad Relación.png
+│   └── Capturas/
+│       ├── pantallaInicial.png
 ```
 
 ---
