@@ -68,7 +68,7 @@ La aplicación permite registrar operaciones de compra y venta de acciones, cons
 ## Arquitectura de la aplicación
 El proyecto sigue una arquitectura por capas.
 <p align="center">
-    <img src="diagramas/Diagrama de Arquitectura.png"
+    <img src="Diagramas/Diagrama de Arquitectura.png"
          alt="Diagrama de arquitectura de GESCAR"
          width="900">
 </p>
@@ -76,7 +76,7 @@ El proyecto sigue una arquitectura por capas.
 ## Modelo entidad-relación
 
 <p align="center">
-    <img src="diagramas/Diagrama Entidad Relación.png"
+    <img src="Diagramas/Diagrama Entidad Relación.png"
          alt="Diagrama de arquitectura de GESCAR"
          width="900">
 </p>
@@ -84,7 +84,7 @@ El proyecto sigue una arquitectura por capas.
 ## Casos de uso
 
 <p align="center">
-    <img src="diagramas/Diagrama de Casos de Uso (UML).png"
+    <img src="Diagramas/Diagrama de Casos de Uso (UML).png"
          alt="Diagrama de arquitectura de GESCAR"
          width="900">
 </p>
